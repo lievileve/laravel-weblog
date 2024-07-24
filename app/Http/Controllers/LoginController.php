@@ -12,7 +12,7 @@ class LoginController extends Controller
      // Show the login form
      public function showLoginForm()
      {
-         return view('auth.login'); // Ensure you have a corresponding view file
+         return view('auth.login'); 
      }
 
     /**

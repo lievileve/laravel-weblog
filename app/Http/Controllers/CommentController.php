@@ -55,7 +55,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        return view('comments.edit', compact('comment'));
+     //
     }
 
     /**

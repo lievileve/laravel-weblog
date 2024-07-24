@@ -25,13 +25,11 @@ class PostController extends Controller
         //This part of the code checks for premium user status
 
         if ($user->is_premium) {
-            // If the user is a premium user, they can see all posts
             $posts = $posts->where(function($query) {
                 $query->where('is_premium', true)
                       ->orWhere('is_premium', false);
             });
         } else {
-            // If the user is not a premium user, they can see only non-premium posts
             $posts = $posts->where('is_premium', false);
         }
 
@@ -74,7 +72,6 @@ class PostController extends Controller
 
         //Store the uploaded image to the public directory, if an image is provided
         if ($request->hasFile('image')) {
-            // $path = Storage::putFile('images', $request->file('image'));
             $path = $request->file('image')->store('images', 'public');
             $validated['image'] = $path;
         }
@@ -84,7 +81,6 @@ class PostController extends Controller
 
         // Attach the categories to the post
         $post->categories()->attach($categoryIds);
-
         return redirect()->route('posts.index');
     }
 
@@ -113,9 +109,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $validated = $request->validated();
-
         $post->update($validated);
-
         return redirect()->route('posts.index');
     }
 
@@ -125,19 +119,13 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-
         return redirect()->route('posts.user');
     }
 
     public function showUserPosts()
     {
-        // Get the currently authenticated user
         $user = Auth::user();
-
-        // Retrieve all posts belonging to the authenticated user
-        $posts = $user->posts; // Assuming you have a posts() relation in the User model
-
-        // Return the posts to a view
+        $posts = $user->posts;
         return view('posts.user_posts', ['posts' => $posts]);
     }
 }
