@@ -15,7 +15,7 @@
             <tbody>
                 @foreach($posts as $post)
                 <tr>
-                    <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
                     <td>{{ $post->created_at->format('d/m/Y') }}</td>
                 </tr>
                 @endforeach

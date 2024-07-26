@@ -16,13 +16,13 @@
                 <tbody>
                     @foreach($posts as $post)
                     <tr>
-                        <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                        <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
                         <td>{{ $post->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
+                            <a href="{{ route('posts.edit', $post) }}">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Delete</button>

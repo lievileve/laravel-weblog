@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
      // Show the login form
-     public function showLoginForm()
-     {
+     public function showLoginForm(){
          return view('auth.login'); 
      }
 
@@ -28,10 +27,9 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect('/posts');
+            return redirect('/');
         }
 
- 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');

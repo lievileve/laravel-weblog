@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function togglePremiumStatus()
-    {
+    public function togglePremiumStatus(){
         // Get the currently authenticated user
         $user = Auth::user();
 
@@ -24,15 +23,5 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Failed to update user status.');
         }
     }
-
-    public function showProfile()
-    {
-        $user = Auth::user();
-        return view('profile', compact('user'));
-    }
-
-    // public function showUserName()
-
-
 }
 

@@ -3,7 +3,7 @@
 @section('title', 'View Post')
 
 @section('content')
-    <div class="container" id="post">
+    <div id="post">
         <h1>{{ $post->title }}</h1>
             <div id="post_body">
                 {{ $post->body }}
@@ -17,7 +17,7 @@
             <p>Updated at {{ $post->updated_at->format('d M Y H:i') }}</p><br>
     </div>
 
-    <div class="container" id="comment_list">
+    <div id="comment_list">
         <h2>Comments</h2>
             <ul>
                 @foreach ($post->comments as $comment)
@@ -28,7 +28,7 @@
             </ul>
     </div>
 
-    <div class="container" id="comment_box">
+    <div id="comment_box">
             <form action="{{ route('comments.store', $post->id) }}" method="POST">
                 @csrf
                 <div class="form-group">

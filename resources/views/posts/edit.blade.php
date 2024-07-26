@@ -6,7 +6,7 @@
 
     <h1>Edit post</h1>
     <div>
-        <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST">
+        <form action="{{ route('posts.update', ['post' => $post]) }}" method="POST">
             @csrf
             @method('PUT')
             <label for="title">Title:</label><br>

@@ -17,8 +17,21 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $oldSchoolHipHopArtists = [
+            'Run-D.M.C.',
+            'Grandmaster Flash',
+            'LL Cool J',
+            'Public Enemy',
+            'Eric B. & Rakim',
+            'KRS-One',
+            'Beastie Boys',
+            'Ice-T',
+            'N.W.A',
+            'A Tribe Called Quest'
+        ];
+
         return [
-            'name' => fake()->word(),
+            'name' => $this->faker->randomElement($oldSchoolHipHopArtists),
         ];
     }
 }

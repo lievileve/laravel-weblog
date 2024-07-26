@@ -11,27 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Store comment on post
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCommentRequest $request, Post $post)
-    {
+    public function store(StoreCommentRequest $request, Post $post){
         $validated = $request->validated();
 
         $post->comments()->create([
@@ -39,48 +23,7 @@ class CommentController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('posts.show', $post->id)->with('success', 'Comment added successfully!');
+        return redirect()->route('posts.show', $post);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-     //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        $request->validate([
-            'body' => 'required',
-        ]);
-
-        $comment->update($request->all());
-
-        return redirect()->route('posts.show', $comment->post_id)->with('success', 'Comment updated successfully.');
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comment $comment)
-    {
-        $postId = $comment->post_id;
-        $comment->delete();
-
-        return redirect()->route('posts.show', $postId)->with('success', 'Comment deleted successfully.');
-    }
 }
