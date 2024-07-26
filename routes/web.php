@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     //Post routes
+    Route::get('/', [PostController::class, 'index'])->name('posts.index');
     Route::resource('posts', PostController::class)->except(['show']);
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 

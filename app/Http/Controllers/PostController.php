@@ -94,7 +94,8 @@ class PostController extends Controller
      */
     public function edit(Post $post){
         $categories = Category::all();
-        return view('posts.edit', compact('post','categories'));
+        $imageUrl = Storage::url($post->image);    
+        return view('posts.edit', compact('post','categories','imageUrl'));
     }
 
     /**
@@ -102,7 +103,29 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post){
         $validated = $request->validated();
-        $post->update($validated);
+        $post->title = $validated['title'];
+        $post->body = $validated['body'];
+        
+
+        //Edit the code below, taken from chatGPT: needs to use the same variables and rules as the create and store functions use. 
+
+        // if ($request->has('delete_image')) {
+        //     if ($post->image) {
+        //         Storage::delete($post->image);
+        //         $post->image = null;
+        //     }
+        // } elseif ($request->hasFile('image')) {
+            
+        //     $imagePath = $request->file('image')->store('images');
+            
+        //     if ($post->image) {
+        //         Storage::delete($post->image);
+        //     }
+            
+        // $post->image = $imagePath;
+        // }
+        
+        $post->save();
         return redirect()->route('posts.index');
     }
 

@@ -18,16 +18,23 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $oldSchoolHipHopArtists = [
-            'Run-D.M.C.',
             'Grandmaster Flash',
+            'Run-D.M.C.',
             'LL Cool J',
             'Public Enemy',
             'Eric B. & Rakim',
+            'Salt-N-Pepa',
             'KRS-One',
+            'Slick Rick',
+            'Big Daddy Kane',
+            'N.W.A',
             'Beastie Boys',
             'Ice-T',
-            'N.W.A',
-            'A Tribe Called Quest'
+            'MC Lyte',
+            'Queen Latifah',
+            'De La Soul',
+            'A Tribe Called Quest',
+            'Biz Markie',
         ];
 
         return [
