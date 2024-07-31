@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
         <h1>My Posts</h1>
             <table>
                 <thead>

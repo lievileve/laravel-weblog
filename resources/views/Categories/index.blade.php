@@ -20,6 +20,5 @@
     <br><br>
 
     <a href="{{ route('categories.create') }}">Add Category</a>
-
 @endsection
    

@@ -5,7 +5,6 @@
 @section('content')
 
     <h1>Edit post</h1>
-    <div>
         <form action="{{ route('posts.update', ['post' => $post]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -34,7 +33,7 @@
 
             <button type="submit">Update</button>
         </form>
-    </div>
+
 
     @if ($errors->any())
     <div class="alert alert-danger">
