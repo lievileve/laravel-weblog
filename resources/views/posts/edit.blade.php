@@ -10,17 +10,18 @@
             @csrf
             @method('PUT')
             <label for="title">Title:</label><br>
-            <input id="title" name="title" type="text" value="{{ $post->title }}" required><br><br>
+            <input id="title" class="post_text" name="title" type="text" value="{{ $post->title }}" required><br><br>
             <label for="body">Write your post here.</label><br>
             <textarea id="body" name="body" required>{{ $post->body }}</textarea><br><br>
             <div id="post_image">
                 @if ($post->image)
                     <label>Current Image:</label><br>
-                    <img src="{{ asset($imageUrl) }}"><br>
+                    <img src="{{ asset($imageUrl) }}" class="thumbnail"><br>
 
                     
-                    <label for="delete_image">Check this box to delete the current image</label>
-                    <input type="checkbox" name="delete_image" id="delete_image"><br><br>
+                    <label for="delete_image">Check this box to delete the current image without uploading a new one</label>
+                    <input type="hidden" name="delete_image" value="0">
+                    <input type="checkbox" name="delete_image" id="delete_image" value="1"><br><br>
                     
                     <label>Upload an image to replace the original one here:</label>
                     <input type="file" name="image" id="image"><br><br><br>  
@@ -34,4 +35,14 @@
             <button type="submit">Update</button>
         </form>
     </div>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+             <ul>   {{ $error }} </ul>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 @endsection

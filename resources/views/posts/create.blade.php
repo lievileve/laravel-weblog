@@ -8,7 +8,7 @@
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="title">Title:</label><br>
-            <input id="title" name="title" type="text" required><br><br>
+            <input id="title" class="post_text" name="title" type="text" required><br><br>
             <label for="body">Write your post here.</label><br>
             <textarea id="body" name="body" required></textarea><br><br>
             <label for="image">Upload Image:</label><br>

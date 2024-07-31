@@ -106,24 +106,22 @@ class PostController extends Controller
         $post->title = $validated['title'];
         $post->body = $validated['body'];
         
+        if ($request->has('delete_image')) {
+            if ($post->image) {
+                Storage::delete($post->image);
+                $post->image = null;
+            }
+        } 
+        
+        if ($request->hasFile('image')) {
 
-        //Edit the code below, taken from chatGPT: needs to use the same variables and rules as the create and store functions use. 
-
-        // if ($request->has('delete_image')) {
-        //     if ($post->image) {
-        //         Storage::delete($post->image);
-        //         $post->image = null;
-        //     }
-        // } elseif ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
             
-        //     $imagePath = $request->file('image')->store('images');
-            
-        //     if ($post->image) {
-        //         Storage::delete($post->image);
-        //     }
-            
-        // $post->image = $imagePath;
-        // }
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $post->image = $path;
+        }
         
         $post->save();
         return redirect()->route('posts.index');
